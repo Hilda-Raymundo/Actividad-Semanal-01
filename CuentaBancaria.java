@@ -12,7 +12,7 @@ public class CuentaBancaria {
     
     private int noCuenta;
     private float deposito;
-    private float saldo;
+    private float saldo = 10.0f;
     private int[] cuentasBanco = new int[5000];
     private int indice = 0;
     
@@ -27,11 +27,23 @@ public class CuentaBancaria {
             this.noCuenta = 0;
         }
     }
-    public void setDeposito(float deposito){
-        if(deposito>0){
-            this.saldo = deposito + this.saldo;
+    public void setSaldo(float saldo){
+        if(saldo>0){
+            this.saldo = saldo;
         }else{
             this.saldo = 0.0f;
+        }
+    }
+    
+    public float getSaldo(){
+        return this.saldo;
+    }
+    
+    public void setDeposito(float deposito){
+        if(deposito>0){
+            this.deposito = deposito;
+        }else{
+            this.deposito = 0.0f;
         }
     }
     
@@ -39,39 +51,31 @@ public class CuentaBancaria {
         if(this.saldo > 0 && this.noCuenta>0){
             System.out.println("Cuenta: " + this.noCuenta + " salddo inicial: " + saldo);
             cuentasBanco[indice] = this.noCuenta;
-            System.out.println("cuentas: " + cuentasBanco[indice]);
-            indice++;
         }else{
             System.err.println("ERROR - NO SE CREO LA CUENTA - LOS DATOS INGRESADOS SON INCORRECTOS");
         }
     }
     
     public void depositar(){
-        if(this.saldo > 0){
-            for(int i=0; i<=indice;i++){
-                if(this.noCuenta== cuentasBanco[i]){
-                    System.out.println("Cuenta: " + this.noCuenta + " salddo total: " + saldo);
-                }
-            }
+        if(this.deposito > 0){
+            this.saldo = this.saldo + this.deposito;
+            System.out.println(this.saldo);
         }else{
             System.err.println("ERROR - NO SE DEPOSITO - LOS DATOS INGRESADOS SON INCORRECTOS");
         }
     }
     
     public void retirar(){
-        if(this.saldo > 0){
-            System.out.println("Cuenta: " + this.noCuenta + " salddo inicial: " + saldo);
+        if(this.deposito > 0){
+            this.saldo = this.saldo - this.deposito;
+            System.out.println(this.saldo);
         }else{
             System.err.println("ERROR - NO SE PUEDE RETIRAR - LOS DATOS INGRESADOS SON INCORRECTOS");
         }
     }
     
     public void consultar(){
-        if(this.noCuenta>0){
-            System.out.println("Cuenta: " + this.noCuenta + " salddo inicial: " + saldo);
-        }else{
-            System.err.println("ERROR - LOS DATOS INGRESADOS SON INCORRECTOS");
-        }
+       
     }
     
 }

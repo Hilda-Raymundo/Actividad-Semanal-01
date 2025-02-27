@@ -17,56 +17,58 @@ public class GestionCuentasBancarias {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        CuentaBancaria cuentaBancaria = new CuentaBancaria(0);
         Scanner scan = new Scanner(System.in);
         int eleccion = 0;
         int noCuenta = 0;
         float monto = 0.0f;
+        float deposito = 0.0f;
         
-        do{
-            System.out.println(" \n Elija la opcion que desee ejecutar");
+            System.out.println("Escriba el numero de la opcion que desee ejecutar");
             System.out.println("1. Crear cuenta bancaria");
-            System.out.println("2. Depositar");
-            System.out.println("3. Retirar");
-            System.out.println("4. Consultar");
+            System.out.println("2. Ya tengo cuenta");
             eleccion = scan.nextInt();
-
             System.out.println("Ingrese el numero de cuenta: ");
             noCuenta = scan.nextInt();
-            CuentaBancaria cuentaBancaria = new CuentaBancaria(noCuenta);
-        
-            switch(eleccion){
-                case 1:
-                    System.out.println("Ingrese el saldo inicial: ");
+            
+            if(eleccion == 1){
+                System.out.println("Ingrese el saldo inicial: ");
                     monto = scan.nextInt();
                     cuentaBancaria.setnoCuenta(noCuenta);
-                    cuentaBancaria.setDeposito(monto);
+                    cuentaBancaria.setSaldo(monto);
                     cuentaBancaria.crearCuenta();
-                    break;
-                case 2:
-                    System.out.println("Ingrese el monto a depositar: ");
-                    monto = scan.nextInt();
-                    cuentaBancaria.setnoCuenta(noCuenta);
-                    cuentaBancaria.setDeposito(monto);
-                    cuentaBancaria.depositar();
-                    break;
-                case 3:
-                    System.out.println("Ingrese el monto a retirar: ");
-                    monto = scan.nextInt();
-                    cuentaBancaria.setnoCuenta(noCuenta);
-                    cuentaBancaria.setDeposito(monto);
-                    cuentaBancaria.retirar();
-                    break;
-                case 4:
-                    cuentaBancaria.setnoCuenta(noCuenta);
-                    cuentaBancaria.consultar();
-                    break;
-                default:
-                    break;
-            }
-        }while(eleccion>0 && eleccion<5);
-                
-        
-        
+            }else if(eleccion == 2){
+                do{
+                    System.out.println(" \n Elija la opcion que desee ejecutar");
+                    System.out.println("1. Depositar");
+                    System.out.println("2. Retirar");
+                    System.out.println("3. Consultar");
+                    eleccion = scan.nextInt();
+
+                    switch(eleccion){
+                    case 1:
+                        System.out.println("Ingrese el monto a depositar: ");
+                        deposito = scan.nextFloat();
+                        cuentaBancaria.setnoCuenta(noCuenta);
+                        cuentaBancaria.setDeposito(deposito);
+                        cuentaBancaria.depositar();
+                        break;
+                    case 2:
+                        System.out.println("Ingrese el monto a retirar: ");
+                        monto = scan.nextInt();
+                        cuentaBancaria.setnoCuenta(noCuenta);
+                        cuentaBancaria.setDeposito(monto);
+                        cuentaBancaria.retirar();
+                        break;
+                    case 3:
+                        cuentaBancaria.setnoCuenta(noCuenta);
+                        System.out.println( "Cuenta: "+ noCuenta + " saldo total: " + cuentaBancaria.getSaldo());
+                        break;
+                    default:
+                        break;
+                } 
+                }while(eleccion>0 && eleccion<4);
+            }                                   
     }
     
 }
