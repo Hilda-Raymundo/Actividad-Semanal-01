@@ -11,6 +11,8 @@ package controldetemperatura;
 public class Termometro {
     
     private float gradosCelsius;
+    private float fahrenheit;
+    private float kelvin;
     
     public Termometro(){
     
@@ -19,13 +21,21 @@ public class Termometro {
     public void setgradosCelsius(float gradosCelsius){
         this.gradosCelsius = gradosCelsius;
     }
+
+    public float getGradosFahrenheit(){
+        return this.fahrenheit;
+    }
+    
+    public float getGradosKelvin(){
+        return this.kelvin;
+    }
     
     public void convertirAFahrenheit(){
-    
+        this.fahrenheit = (this.gradosCelsius * 9/5) + 32;
     }
     
     public void convertirAKelvin(){
-    
+        this.kelvin = this.gradosCelsius + 273;
     }
     
 }
